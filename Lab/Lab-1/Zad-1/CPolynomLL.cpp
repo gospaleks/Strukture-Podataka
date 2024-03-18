@@ -32,7 +32,7 @@ void CPolynomLL::DeleteFromHead()
 }
 
 void CPolynomLL::Coef(int exp, double coef)
-{
+{	
 	// Ako je lista prazna ili ako je element veceg stepena nego trenutni najveci
 	if (Empty() || exp > head->exp)
 		head = new Node(exp, coef, head);
@@ -66,6 +66,23 @@ void CPolynomLL::Coef(int exp, double coef)
 
 CPolynomLL* CPolynomLL::Add(const CPolynomLL& poly1, const CPolynomLL& poly2)
 {
+	/*
+ 		Mozda bolje resenje:
+   		Posto u Coef(..) pokrivam slucaj kad se dodaje element s isti eksponent,
+     		moze da se prodje samo kroz poly1 i poly2 i redom da se dodaju svi i f-ja Coef ce sredi duplikate
+
+   		while (ptr1 != nullptr) {
+     			result->Coef(ptr1->exp, ptr1->coef);
+			ptr1 = ptr1->next;
+		}
+
+     		while (ptr2 != nullptr) {
+     			result->Coef(ptr2->exp, ptr2->coef);
+			ptr2 = ptr2->next;
+		}
+ 	*/
+
+	
 	CPolynomLL* result = new CPolynomLL();
 
 	Node* ptr1 = poly1.head;
