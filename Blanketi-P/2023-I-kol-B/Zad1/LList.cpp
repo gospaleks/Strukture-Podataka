@@ -87,19 +87,7 @@ void LList::printAll()
 
 void LList::swap(LLNode* ptr, LLNode* prev)
 {
-	// Menja mesta na ptr i ptr->next
-	// prev nam treba zbog prelancavanja
-
-	if (prev == nullptr) {
-		head = ptr->next;
-		ptr->next = ptr->next->next;
-		head->next = ptr;
-	}
-	else {
-		prev->next = ptr->next;
-		ptr->next = ptr->next->next;
-		prev->next->next = ptr;
-	}
+	// ne treba
 }
 
 void LList::invertSublist(int data1, int data2)
@@ -160,62 +148,69 @@ void LList::invertSublist(int data1, int data2)
 		current = next;
 	}
 
+	/* Davidovicev nacin */
 
-/*
-	// Ako je prazna lista ili ima samo jedan element 
-	// ili je podlista od jednog elementa obustavi obradu
-	if (isEmpty() || head == tail || data1 == data2)
-		return;
-
-	// Nadji data1
-	LLNode* prev1 = nullptr;
-	LLNode* ptr1 = head;
-	while (ptr1 != nullptr && ptr1->info != data1)
-	{
-		prev1 = ptr1;
-		ptr1 = ptr1->next;
-	}
-
-	// Nadji data2 (krece od ptr1 jer kaze sig je desno od njega)
-	LLNode* ptr2 = ptr1;
-	while (ptr2 != nullptr && ptr2->info != data2)
-		ptr2 = ptr2->next;
-
-	// Ako ne nadje jedan od ova dva elementa obustavi
-	if (ptr1 == nullptr || ptr2 == nullptr)
-		return;
-
-	while (ptr1 != ptr2)
-	{
-		// Unutrasnja while petlja istiskuje prvi na zadnje mesto
-		// Znaci kao u bubble sort menjaju se mesta na svaka dva
-		// Kad se to ponovi n puta (tj kad dodjemo do ptr2) podlista je okrenuta
-
-		// Posle jedne iteracija unutrasnje while petlje lista je: 1 2 3 5 6 7 8 4 9 0
-		// Pa se onda 5 istisne do 4 i tako u svaki prolaz sve manje i manje	
-
-		// Odkomentarisi printAll() i vidi se ponasanje kroz svaku iteraciju
-
-		LLNode* tmp = ptr1;
-		LLNode* tmpPrev = prev1;
-
-		while (tmpPrev != ptr2)
+	/*
+	 	if (isEmpty() || head == tail || data1 == data2)
+			return;
+	
+		LLNode* insert;
+		if (head->info != data1)
 		{
-
-			swap(tmp, tmpPrev);
-
-			// printAll();
-
-			// ovo je samo spec slucaj kad podlista pocinje od prvog elementa
-			if (tmpPrev == nullptr) tmpPrev = head;
-			else tmpPrev = tmpPrev->next;
+			insert = head;
+			while (insert->next != nullptr && insert->next->info != data1)
+				insert = insert->next;
+	
+			if (insert->next == nullptr) return;	// ako ga prvi nema
 		}
-
-		// isto spec slucaj kad podlista pocinje od prvog elementa
-		if (prev1 == nullptr) ptr1 = head;
-		else ptr1 = prev1->next;
-	}
-*/
-
-
+		else {
+			insert = head;
+		}
+	
+		LLNode* ptr2 = insert->next;
+		while (ptr2 != nullptr && ptr2->info != data2)
+			ptr2 = ptr2->next;
+	
+		if (ptr2 == nullptr) return;	// ako ga drugi nema
+		
+		if (insert == head) insert = nullptr;
+	
+		LLNode* tmpPrev;
+		LLNode* tmp;
+		if (insert == nullptr) {
+			tmpPrev = head;
+			tmp = head->next;
+		}
+		else {
+			tmpPrev = insert->next;
+			tmp = insert->next->next;
+		}
+	
+		while (tmp != ptr2) {
+	
+			tmpPrev->next = tmp->next;
+	
+			if (insert == nullptr) {
+				tmp->next = head;
+				head = tmp;
+			}
+			else  {
+				tmp->next = insert->next;
+				insert->next = tmp;
+			}
+	
+			tmp = tmpPrev->next;
+		}
+		
+		tmpPrev->next = tmp->next;
+		if (insert == nullptr) {
+			tmp->next = head;
+			head = tmp;
+		}
+		else {
+			tmp->next = insert->next;
+			insert->next = tmp;
+		}
+ 	*/
+	
 }
