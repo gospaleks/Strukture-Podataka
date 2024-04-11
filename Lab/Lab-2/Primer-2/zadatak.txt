@@ -1,0 +1,3 @@
+Heš tablica sa otvorenim adresiranjem se koristi za pamćenje podataka o automobilima tako da se za svaki automobil pamti tablica, oblika AA-BBB-CC gde je AA dvoslovna oznaka grada, BBB je trocifreni broj dok je CC dvoslovna oznaka. 
+Pored tablice pamti se i naziv modela i godina proizvodnje. Ažurirati klasu HashObject tako da pamti definisane podatke (atribute, konstruktore i operatore dodele i provere na jednakost) i implementirati funkcije f i g tako da ispunjavaju osnovne zahteve dobre heš funkcije.
+Radi ilustracije smatrati da je veličina tablice 64 elementa. U main funkciji dodati 10 ilustrativnih elemenata i štampati sadržaj tablice. Za dati broj tablice prikazati podatke o automobiliu čiji se podaci nalaze u tablici.
