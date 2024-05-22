@@ -43,5 +43,6 @@ public:
 	bool findCycleWithNode(const int& data);
 	void findCycle(int dataStart, int dataEnd, int dataOnPath);
 	bool pathWithoutEdge(int dataFirst, int dataLast, int dataEgdeSource, int dataEdgeDest);
+	int countNodesWithPathLessThenK(int dataStart, int k);
 };
 
