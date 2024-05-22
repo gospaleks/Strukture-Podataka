@@ -8,6 +8,50 @@ using namespace std;
 
 // Primeri sa lab vezbi
 
+/*
+
+	Metod koji odredjuje broj cvorova grafa do kojih se moze doci iz zadatog cvora
+	tako da je duzina bar jednog puta do cvora manja od zadate vrednosti
+
+*/
+int GraphAsListsInt::countNodesWithPathLessThenK(int dataStart, int k)
+{
+	LinkedNodeInt* ptr = findNode(dataStart);
+
+	if (ptr == nullptr)
+		return 0;
+
+	// 1 - neobradjen
+	setStatusForAllNodes(1);
+	int retVal = 0;
+
+	QueueAsArrayLinkedNodeInt queue(nodeNum);
+	queue.enqueue(ptr);
+	ptr->status = 2; // 2 - unutar strukture
+
+	while (!queue.isEmpty()) {
+		
+		ptr = queue.dequeue();
+		ptr->status = 3; // 3 - obradjen
+		LinkedEdgeInt* pEdge = ptr->adj;
+		while (pEdge != nullptr) {
+
+			// samo ako je distance manji od k racunaj ga
+			if (pEdge->dest->status == 1 && ptr->distance < k) {
+				pEdge->dest->status = 2;
+				// posto je BFS svaki put idemo jedan korak u sirinu pa ide distance + 1
+				pEdge->dest->distance = ptr->distance + 1;
+				queue.enqueue(pEdge->dest);
+				retVal++;
+			}
+			pEdge = pEdge->link;
+
+		}
+	}
+
+	return retVal;
+}
+
 bool GraphAsListsInt::findCycleWithNode(const int& data)
 {
 	/*
