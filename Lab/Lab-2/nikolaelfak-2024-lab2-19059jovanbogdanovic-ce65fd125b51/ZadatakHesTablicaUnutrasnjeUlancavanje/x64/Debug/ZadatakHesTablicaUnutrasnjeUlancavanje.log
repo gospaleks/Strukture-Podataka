@@ -1,0 +1,6 @@
+﻿  ChainedScatterObject.cpp
+  ChainedScatterTable.cpp
+D:\joca\nikolaelfak-2024-lab2-19059jovanbogdanovic-ce65fd125b51\ZadatakHesTablicaUnutrasnjeUlancavanje\ChainedScatterTable.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
+  ZadatakHesTablicaUnutrasnjeUlancavanje.vcxproj -> D:\joca\nikolaelfak-2024-lab2-19059jovanbogdanovic-ce65fd125b51\x64\Debug\ZadatakHesTablicaUnutrasnjeUlancavanje.exe
