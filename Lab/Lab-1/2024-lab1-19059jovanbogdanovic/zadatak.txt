@@ -1,0 +1,3 @@
+U projekat dvostruko spregnute dinamički implementirane lančane liste dodati metodu void insertSorted(int el) 
+koja u sortiranu neopadajuću listu dodaje element el tako da lista ostane sortirana. 
+U glavnoj funkciji programa dodati 7 različitih vrednosti i prikazati sadržaj liste nakon svakog dodavanja.
