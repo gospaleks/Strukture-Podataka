@@ -1,37 +1,83 @@
+
+bool GraphAsListsInt::isCyclic()
+{
+	LinkedNodeInt* ptr = start;
+
+	setStatusForAllNodes(0);
+
+	int currentStatus = 10;
+	while (ptr != nullptr) {
+		if (ptr->status == 0) {
+			if (dfsRec(ptr, currentStatus++))
+				return true;
+		}
+		ptr = ptr->next;
+	}
+}
+
+bool GraphAsListsInt::dfsRec(LinkedNodeInt* ptr, int currentStatus)
+{
+	ptr->status = currentStatus; // obradjeni
+	LinkedEdgeInt* pEdge = ptr->adj;
+
+	while (pEdge != nullptr) {
+
+		if (pEdge->dest->status == currentStatus)
+			return true;
+		else if (pEdge->dest->status == 0)
+			return dfsRec(pEdge->dest, currentStatus);
+
+		pEdge = pEdge->link;
+	}
+}
+
+
 /*
-	Posto kaze da ne podrazumevamo da je ista implementirano 
-	radio sam DFS reukruzivno da ne bi koristio ni StackAsArrayInt klasu
+	Aleksino resenje (neka vrsta topoloskog obilaska)
+ 	pokrece se obilazak iz cvorova ciji je ulazni stepen 0 (jer oni ne mogu da se obidju nikako drugacije)
 */
+
+/*
 bool GraphAsListsInt::isCyclic()
 {
 	LinkedNodeInt* ptr = start;
 
 	while (ptr != nullptr) {
-		ptr->status = 0; // neobradjeni
+		ptr->status = -1; // ulazni stepen 0
+		ptr = ptr->next;
+	}
+	
+	ptr = start;
+	while (ptr != nullptr)
+	{
+		LinkedEdgeInt* pEdge = ptr->adj;
+		while (pEdge != nullptr)
+		{
+			if (pEdge->dest->status == -1)
+				pEdge->dest->status = 0; // znaci da je ulazni stepen veci od 0 
+			pEdge = pEdge->link;
+		}
 		ptr = ptr->next;
 	}
 
 	ptr = start;
-
-	return dfsRec(ptr);
-}
-
-bool GraphAsListsInt::dfsRec(LinkedNodeInt* ptr)
-{
-	bool res = false;
-
-	// cim naidje na neki koji je vec obradjen znaci da je pronadjen ciklus -> dalja obrada nije potrebna
-	if (ptr->status == 1)
-		res = true;
-
-	else {
-		ptr->status = 1; // obradjeni
-		LinkedEdgeInt* pEdge = ptr->adj;
-		while (pEdge != nullptr) {
-			res = dfsRec(pEdge->dest);
-			pEdge = pEdge->link;
+	bool uslo = 0;
+	while (ptr != nullptr)
+	{
+		if (ptr->status == -1)
+		{
+			uslo = 1;
+			postaviSveOsimSaUlaznimStepenom0(0);
+			if (dfsRec(ptr))
+			{
+				return true;
+			}
 		}
+		ptr = ptr->next;
 	}
-
-	return res;
+	if (!uslo)
+		return true;
+	return false;
 }
+
+*/
