@@ -1,3 +1,49 @@
+/*
+	ovo je malo bolje resenje od onog dole
+	ide se po nivoima i cvorove na svakom nivou obelezim sa 0, pa sa 1, pa sa 2... itd
+ 	pretraga se prekida kad dodjem do nivoa n, posle samo prebrojim koliko cvora ima sa statusom n
+*/
+
+int GraphAsListsInt::reachableInNHoops(LinkedNodeInt* a, int n)
+{
+	setStatusForAllNodes(0);
+
+	LinkedNodeInt* ptr = a;
+	
+	QueueAsArrayLinkedNodeInt red(nodeNum);
+	ptr->status = 0;
+	red.enqueue(ptr);
+
+	while (!red.isEmpty()) {
+		ptr = red.dequeue();
+		LinkedEdgeInt* pEdge = ptr->adj;
+
+		if (ptr->status == n) {
+			break;
+		}
+
+		while (pEdge != nullptr) {
+
+			pEdge->dest->status = ptr->status + 1;
+			red.enqueue(pEdge->dest);
+			
+			pEdge = pEdge->link;
+		}
+	}
+
+
+	int retVal = 0;
+	ptr = start;
+	while (ptr != nullptr) {
+		if (ptr->status == n)
+			++retVal; // cak ovde moze i ispis da se vide koji su to cvorovi
+		ptr = ptr->next;
+	}
+	
+	return retVal;
+}
+
+/*
 int GraphAsListsInt::reachableInNHoops(LinkedNodeInt* a, int n)
 {
 	LinkedNodeInt* ptr = a;
@@ -40,4 +86,4 @@ int GraphAsListsInt::reachableInNHoops(LinkedNodeInt* a, int n)
 	}
 
 	return 0;
-}
+}*/
