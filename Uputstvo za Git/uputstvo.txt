@@ -1,0 +1,24 @@
+uputstvo za git komande za bitBucket i ceo taj proces:
+
+salju nam link na mejl na koj ulazimo i dobijamo zadatak i gore desno na toj stranici ima "clone" dugme odakle se kopira komanda koja ce da nam treba za kasnije
+1) kopiramo tu komandu
+2) otvaramo cmd
+3) kucamo d: (da udjemo u D particiju da ako se slucajno ugasi komp da kod koji smo pisali ostane na kompu)
+4) cd "ime foldera" (opciono, moze i bez ove komande ali trebace posle u koraku 8))
+5) van cmd-a na chrome udjemo na ovaj link da napravimo app password koji nam treba u koraku 7)
+https://bitbucket.org/account/settings/app-passwords/
+i tu ima upustvo sta se cekira na pdf-u ispod ove poruke
+6) paste ona komanda iz koraka 1)
+7) kada stisnemo enter trazice da se ulogujemo (password za bitbucket) i/ili samo da unesemo app password iz koraka 5) ili ce samo da prebaci na browser... ovaj korak moze da se razlikuje na ta 3 nacina jbg
+
+kad smo to uradili onda udjemo u taj folder preko file explorera i radimo zadatak i kad zavrsimo onda ukucamo sledece komande:
+
+8) ako smo uradili cd iz koraka 4 onda nista ako nismo onda cd "ime foldera koji se smo napravili" pisace tu negde gore u cmd
+9) git status (opciono) da vidimo sta se promenilo... ima da se crvene fajlovi koje smo promenili
+10) git add *.*
+11) git status (opciono) sad ce to isto zeleno da bude
+12) git commit -m "neka poruka"
+13) git push
+-- za ove 6 komande imamo pola sata... 
+
+KRAJ!
